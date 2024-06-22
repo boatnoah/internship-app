@@ -5,9 +5,21 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
+import allpostRouter from "./routes/allpost.js";
+
+import mongoose from "mongoose"; // Database setup
+import dotenv from "dotenv";
 
 const app = express();
+
+mongoose.set("strictQuery", false);
+dotenv.config();
+const mongoDB = process.env.CONNECTION_STRING;
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 
 // view engine setup
 app.set("views", path.join(path.resolve(), "views"));
@@ -20,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/allpost", allpostRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
