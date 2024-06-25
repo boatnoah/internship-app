@@ -22,12 +22,9 @@ export async function getInternships(owner, repo) {
 
     const internshipTable = parsedtoHTML.slice(startPoint, endPoint);
 
-    console.log(internshipTable);
-
     const internships = htmlTableToObjects(internshipTable);
-    console.log(internships);
 
-    return internshipTable;
+    return internships;
   } catch (error) {
     // Handle the case where the repository or README is not found
     if (error.response && error.response.status === 404) {
@@ -38,45 +35,43 @@ export async function getInternships(owner, repo) {
   }
 }
 
-// TODO: redo this function
+// Santizes the data into array of js objects
 
 function htmlTableToObjects(htmlString) {
-  // Parse the HTML string into a document object
   const dom = new JSDOM(htmlString);
   const document = dom.window.document;
-
-  // Get the table element from the document
   const table = document.querySelector("table");
-
   if (!table) {
     console.error("No table found in the provided HTML string.");
     return [];
   }
 
-  // Initialize an array to hold the objects
   const result = [];
+  const customKeys = ["company", "position", "location", "link", "date"];
 
-  // Get the headers from the table
-  const headers = Array.from(table.querySelectorAll("thead th")).map((th) =>
-    th.textContent.trim(),
-  );
-  if (headers.length === 0) {
-    console.error("No headers found in the table.");
-    return [];
-  }
-
-  // Get the rows from the table body
+  let lastCompany = "";
   const rows = table.querySelectorAll("tbody tr");
-
-  // Iterate over the rows and convert each to an object
   rows.forEach((row) => {
     const cells = row.querySelectorAll("td");
     const obj = {};
-
     cells.forEach((cell, index) => {
-      obj[headers[index]] = cell.textContent.trim();
+      if (index === 0) {
+        // Company name
+        const companyName = cell.textContent.trim().replace(/[^\w\s,]/gi, "");
+        if (companyName) {
+          lastCompany = companyName;
+        }
+        obj[customKeys[index]] = lastCompany;
+      } else if (index === cells.length - 2) {
+        // Link
+        const link = cell.querySelector("a");
+        obj[customKeys[index]] = link ? link.href : "closed";
+      } else {
+        obj[customKeys[index]] = cell.textContent
+          .trim()
+          .replace(/[^\w\s,]/gi, "");
+      }
     });
-
     result.push(obj);
   });
 
