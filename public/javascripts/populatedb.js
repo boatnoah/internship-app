@@ -5,6 +5,7 @@ import { uri } from "../../config.js";
 import mongoose from "mongoose";
 
 async function pushToMongoDB() {
+  let newInternships = 0;
   try {
     await mongoose.connect(uri);
 
@@ -21,17 +22,21 @@ async function pushToMongoDB() {
       }
 
       // Create the internship, linking it to the company
-      await Internship.create({
-        company: company._id,
-        role: data.position,
-        location: data.location,
-        link: data.link,
-        date_posted: data.date,
-      });
+      let exisitingInternship = await Internship.findOne({ link: data.link });
+      if (!exisitingInternship) {
+        await Internship.create({
+          company: company._id,
+          role: data.position,
+          location: data.location,
+          link: data.link,
+          date_posted: data.date,
+        });
+        newInternships++;
+      }
     }
 
     console.log(
-      `${internshipData.length} internships were processed and inserted`,
+      `${newInternships} new internships were processed and inserted`,
     );
   } catch (e) {
     console.error(e);

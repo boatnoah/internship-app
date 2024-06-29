@@ -8,7 +8,7 @@ import indexRouter from "./routes/index.js";
 import allpostRouter from "./routes/allpost.js";
 
 import mongoose from "mongoose"; // Database setup
-import { uri } from "config.js";
+import { uri } from "./config.js";
 
 const app = express();
 
