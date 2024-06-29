@@ -11,7 +11,7 @@ const internshipSchema = new Schema({
   role: { type: String, required: true },
   location: { type: String, required: true },
   link: { type: String, required: true },
-  date_posted: { type: Date, default: Date.now },
+  date_posted: { type: String, default: Date.now },
 });
 
 export default mongoose.model("Internship", internshipSchema);

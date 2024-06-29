@@ -8,13 +8,12 @@ import indexRouter from "./routes/index.js";
 import allpostRouter from "./routes/allpost.js";
 
 import mongoose from "mongoose"; // Database setup
-import dotenv from "dotenv";
+import { uri } from "config.js";
 
 const app = express();
 
 mongoose.set("strictQuery", false);
-dotenv.config();
-const mongoDB = process.env.CONNECTION_STRING;
+const mongoDB = uri;
 
 main().catch((err) => console.log(err));
 async function main() {
