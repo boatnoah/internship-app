@@ -4,7 +4,7 @@ import { getInternships } from "./getInternships.js";
 import { uri } from "../../config.js";
 import mongoose from "mongoose";
 
-async function pushToMongoDB() {
+export async function pushToMongoDB() {
   let newInternships = 0;
   try {
     await mongoose.connect(uri);
@@ -44,5 +44,3 @@ async function pushToMongoDB() {
     await mongoose.disconnect();
   }
 }
-
-pushToMongoDB();
