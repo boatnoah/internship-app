@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
-import allpostRouter from "./routes/allpost.js";
+import catalog from "./routes/catalog.js";
 
 import mongoose from "mongoose"; // Database setup
 import { uri } from "./config.js";
@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public")));
 
 app.use("/", indexRouter);
-app.use("/allpost", allpostRouter);
+app.use("/catalog", catalog);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
