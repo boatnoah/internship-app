@@ -14,4 +14,8 @@ const internshipSchema = new Schema({
   date_posted: { type: String, default: Date.now },
 });
 
+internshipSchema.virtual("url").get(function () {
+  return `/catalog/${this._id}`;
+});
+
 export default mongoose.model("Internship", internshipSchema);

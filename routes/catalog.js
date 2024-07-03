@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Internship routes
 router.get("/", internshipController.internshipList);
-router.get("/:companyid/:internshipid", internshipController.internshipDetail);
+router.get("/:internshipid", internshipController.internshipDetail);
 
 // Company Routes
 router.get("/company", companyController.companyList);

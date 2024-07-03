@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  if all_internships.length
+    ul
+      each internship in all_internships
+        li
+          a(href=internship.url)
+            span #{internship.role}
+            |  - 
+            span #{internship.company.name}
+  else
+    p Internships are unavailable.
