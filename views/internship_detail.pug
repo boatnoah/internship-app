@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= "Internship Details"
+  if internship_detail
+    ul
+      li
+        strong Company:
+        |  #{company}
+      li
+        strong Role:
+        |  #{internship_detail[0].role}
+      li
+        strong Posted on:
+        |  #{internship_detail[0].date_posted}
+      li
+        strong Location:
+        |  #{internship_detail[0].location}
+      li
+        strong Link:  
+        a(href=internship_detail[0].link)
+          | #{internship_detail[0].link}
+
+  else
+    p No internship details available.

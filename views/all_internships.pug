@@ -4,11 +4,32 @@ block content
   h1= title
   if all_internships.length
     ul
-      each internship in all_internships
-        li
-          a(href=internship.url)
-            span #{internship.role}
-            |  - 
-            span #{internship.company.name}
+      each internship, index in all_internships
+        if index < 50
+          li
+            a(href=internship.url)
+              span #{internship.role}
+              |  - 
+              span #{internship.company.name}
+        else
+          li.hidden
+            a(href=internship.url)
+              span #{internship.role}
+              |  - 
+              span #{internship.company.name}
+    button#view-more(onclick="handleClick()") View more
+
+    // Add script here
+    script.
+      function handleClick() {
+        // Get all elements with the class 'hidden'
+        const hiddenElements = document.querySelectorAll('.hidden');
+        // Iterate over each hidden element and remove the 'hidden' class
+        hiddenElements.forEach(function(element) {
+          element.classList.remove('hidden');
+        });
+        // Hide the button after showing the hidden elements
+        document.getElementById('view-more').style.display = 'none';
+      }
   else
     p Internships are unavailable.
