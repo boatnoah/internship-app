@@ -5,21 +5,21 @@ block content
   if internship_detail
     ul
       li
-        strong Company:
-        |  #{company}
-      li
         strong Role:
-        |  #{internship_detail[0].role}
+        | #{internship_detail[0].role}
       li
         strong Posted on:
-        |  #{internship_detail[0].date_posted}
+        | #{internship_detail[0].date_posted}
       li
         strong Location:
-        |  #{internship_detail[0].location}
+        | #{internship_detail[0].location}
       li
-        strong Link:  
-        a(href=internship_detail[0].link)
-          | #{internship_detail[0].link}
+        strong Link: 
+        if internship_detail[0].link !== "closed"
+          a(href=internship_detail[0].link)
+            | #{internship_detail[0].link}
+        else
+            | Closed 🔒
 
   else
     p No internship details available.

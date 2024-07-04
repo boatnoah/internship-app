@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  if all_companies.length
+    ul
+      each company, index in all_companies
+        if index < 50
+          li
+            a(href=company.url)
+              span #{company.name}
+        else
+          li.hidden
+            a(href=company.url)
+              span #{company.name}
+
+    button#view-more(onclick="handleClick()") View more
+
+    // Add script here
+    script.
+      function handleClick() {
+        // Get all elements with the class 'hidden'
+        const hiddenElements = document.querySelectorAll('.hidden');
+        // Iterate over each hidden element and remove the 'hidden' class
+        hiddenElements.forEach(function(element) {
+          element.classList.remove('hidden');
+        });
+        // Hide the button after showing the hidden elements
+        document.getElementById('view-more').style.display = 'none';
+      }
+  else
+    p Company view is not availble.

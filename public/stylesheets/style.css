@@ -10,3 +10,7 @@ a {
 .hidden {
   display: none;
 }
+
+.internship-post {
+  padding-bottom: 10px;
+}

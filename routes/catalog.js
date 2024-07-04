@@ -4,11 +4,12 @@ import companyController from "../controllers/companyController.js";
 
 const router = express.Router();
 
+router.get("/company", companyController.companyList);
+router.get("/company/:companyid", companyController.companyDetail);
 // Internship routes
-router.get("/", internshipController.internshipList);
-router.get("/:internshipid", internshipController.internshipDetail);
+router.get("/internship", internshipController.internshipList);
+router.get("/internship/:internshipid", internshipController.internshipDetail);
 
 // Company Routes
-router.get("/company", companyController.companyList);
 
 export default router;

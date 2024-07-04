@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= "Internships at " + company_name
+  ul
+    if company_detail 
+      each internship in company_detail
+        div.internship-post
+          li
+            strong Role:
+            | #{internship.role}
+          li
+            strong Posted on:
+            | #{internship.date_posted}
+          li
+            strong Location:
+            | #{internship.location}
+          li
+            strong Link: 
+            if internship.link !== "closed"
+              a(href=internship.link)
+                | #{internship.link}
+            else
+                | Closed 🔒
+
+    else
+      p No internship details available.

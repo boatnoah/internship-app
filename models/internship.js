@@ -15,7 +15,7 @@ const internshipSchema = new Schema({
 });
 
 internshipSchema.virtual("url").get(function () {
-  return `/catalog/${this._id}`;
+  return `/catalog/internship/${this._id}`;
 });
 
 export default mongoose.model("Internship", internshipSchema);

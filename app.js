@@ -9,6 +9,7 @@ import catalog from "./routes/catalog.js";
 
 import mongoose from "mongoose"; // Database setup
 import { uri } from "./config.js";
+import { scheduleUpdate } from "./public/javascripts/scheduleUpdate.js";
 
 const app = express();
 
@@ -48,5 +49,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+scheduleUpdate();
 
 export default app;
