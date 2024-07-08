@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node -r esm ./bin/www",
-    "dev": "nodemon -r esm ./bin/www",
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
     "build": "npm install"
   },
   "dependencies": {
