@@ -6,7 +6,7 @@ import { pushToMongoDB } from "./populatedb.js";
 let isConnected = false;
 
 export function scheduleUpdate() {
-  cron.schedule("* * * * *", async () => {
+  cron.schedule("30 13 * * *", async () => {
     console.log("Scheduled update...", new Date().toISOString());
     try {
       if (!isConnected) {
