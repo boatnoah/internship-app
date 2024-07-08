@@ -1,5 +1,5 @@
 const createError = require("http-errors");
-import express from "express";
+const express = require("express");
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
