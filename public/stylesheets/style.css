@@ -14,3 +14,9 @@ a {
 .internship-post {
   padding-bottom: 10px;
 }
+
+
+.sidebar-nav {
+
+  list-style-type: none;
+}
