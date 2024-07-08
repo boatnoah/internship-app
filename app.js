@@ -52,4 +52,4 @@ app.use((err, req, res, next) => {
 
 scheduleUpdate();
 
-module.exports = app;
+export default app;
