@@ -1,8 +1,9 @@
 const createError = require("http-errors");
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+
 import path from "path";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
 import catalog from "./routes/catalog.js";
