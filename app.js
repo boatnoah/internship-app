@@ -8,7 +8,8 @@ import path from "path";
 import indexRouter from "./routes/index.js";
 import catalog from "./routes/catalog.js";
 
-import mongoose from "mongoose"; // Database setup
+const mongoose = require("mongoose");
+
 import { uri } from "./config.js";
 import { scheduleUpdate } from "./public/javascripts/scheduleUpdate.js";
 
