@@ -1,6 +1,6 @@
 const axios = require("axios");
-import { marked } from "marked";
-import { JSDOM } from "jsdom";
+const { marked } = require("marked");
+const { JSDOM } = require("jsdom");
 
 // Function to fetch and decode the README content
 export async function getInternships(owner, repo) {
