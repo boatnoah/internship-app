@@ -23,7 +23,7 @@ export async function getInternships(owner, repo) {
     const internshipTable = parsedtoHTML.slice(startPoint, endPoint);
 
     const internships = htmlTableToObjects(internshipTable);
-
+    console.log(internships);
     return internships;
   } catch (error) {
     // Handle the case where the repository or README is not found
@@ -47,7 +47,7 @@ function htmlTableToObjects(htmlString) {
   }
 
   const result = [];
-  const customKeys = ["company", "position", "location", "link", "date"];
+  const customKeys = ["company", "role", "location", "link", "date_posted"];
 
   let lastCompany = "";
   const rows = table.querySelectorAll("tbody tr");

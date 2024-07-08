@@ -1,15 +1,26 @@
+import mongoose from "mongoose";
+import { uri } from "../../config.js";
 import cron from "node-cron";
 import { pushToMongoDB } from "./populatedb.js";
 
-export function scheduleUpdate() {
-  cron.schedule("30 13 * * *", async () => {
-    console.log("Scheduled daily update...", new Date().toISOString());
+let isConnected = false;
 
+export function scheduleUpdate() {
+  cron.schedule("* * * * *", async () => {
+    console.log("Scheduled update...", new Date().toISOString());
     try {
+      if (!isConnected) {
+        await mongoose.connect(uri);
+        isConnected = true;
+        console.log("Connected to MongoDB");
+      }
       await pushToMongoDB();
-      console.log("Daily update completed successfully");
+      console.log("Update completed successfully");
     } catch (err) {
-      console.error("Error in daily update:", err);
+      console.error("Error in update:", err);
+      if (err.name === "MongoNetworkError") {
+        isConnected = false;
+      }
     }
   });
 }
