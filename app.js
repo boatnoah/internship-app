@@ -50,6 +50,10 @@ app.use((err, req, res, next) => {
   res.render("error");
 });
 
-scheduleUpdate();
+// Delay the cron job
+setTimeout(() => {
+  scheduleUpdate();
+  console.log("Scheduled update initiated");
+}, 60000); // 60000 ms = 1 minute
 
 export default app;
