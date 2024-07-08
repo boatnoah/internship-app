@@ -1,6 +1,6 @@
 import Company from "../models/company.js";
+import expressAsyncHandler from "express-async-handler";
 import Internship from "../models/internship.js";
-const expressAsyncHandler = require("express-async-handler");
 
 const companyList = expressAsyncHandler(async (req, res, next) => {
   const allCompanies = await Company.find().exec();

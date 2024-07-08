@@ -1,6 +1,6 @@
 import Company from "../models/company.js";
 import Internship from "../models/internship.js";
-const expressAsyncHandler = require("express-async-handler");
+import expressAsyncHandler from "express-async-handler";
 
 const internshipList = expressAsyncHandler(async (req, res, next) => {
   const allInternships = await Internship.find({}, "role _id")

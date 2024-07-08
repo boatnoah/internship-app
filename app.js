@@ -1,15 +1,13 @@
-const createError = require("http-errors");
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-
+import createError from "http-errors";
+import express from "express";
 import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
 import catalog from "./routes/catalog.js";
 
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose"; // Database setup
 import { uri } from "./config.js";
 import { scheduleUpdate } from "./public/javascripts/scheduleUpdate.js";
 

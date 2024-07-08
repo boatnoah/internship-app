@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 import { getInternships } from "../public/javascripts/getInternships.js";
 const router = express.Router();
 

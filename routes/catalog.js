@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 import internshipController from "../controllers/internshipController.js";
 import companyController from "../controllers/companyController.js";
 

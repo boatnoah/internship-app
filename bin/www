@@ -5,7 +5,7 @@
  */
 
 import app from "../app.js";
-const debugLib = require("debug");
+import debugLib from "debug";
 import http from "http";
 
 const debug = debugLib("internship-app:server");
