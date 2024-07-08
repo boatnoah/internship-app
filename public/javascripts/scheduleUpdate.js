@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 import { uri } from "../../config.js";
 import cron from "node-cron";
 import { pushToMongoDB } from "./populatedb.js";
