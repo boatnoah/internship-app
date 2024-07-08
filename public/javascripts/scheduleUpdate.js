@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 import { uri } from "../../config.js";
-import cron from "node-cron";
+const cron = require("node-cron");
 import { pushToMongoDB } from "./populatedb.js";
 
 let isConnected = false;
